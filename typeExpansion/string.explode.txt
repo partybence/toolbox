@@ -1,0 +1,18 @@
+Similar to the split function of the String prototype.
+Unlike that, this function doesn't omit the part after the specified limit, only leaves it unsplit.
+The limit parameter specifies the number of parts, not the number of splits!
+If the limit is or less than 0, that's treated as no limit. This has the same behavior as split without limit set.
+
+
+Usage:
+	> (String).explode(separator:String, limit=0);
+
+Examples:
+	> "1,2,3,4".explode(",");
+	< ["1", "2", "3", "4"]
+	---
+	> "1,2,3,4".explode(",", 3);
+	< ["1", "2", "3,4"]
+	---
+	> "1,2,3,4".explode(",", 1);
+	< ["1,2,3,4"]
