@@ -4,6 +4,12 @@ Usage:
 	> FormatDate(timestamp, format:String)
 	> (Date).format(format:String)
 
+Examples:
+	> new Date(Date.now()).format("%Y-%m-%dT%T%z");
+	< "2026-03-16T20:20:34+0100"
+	> FormatDate(1234567890000, "%F %I:%M %p");
+	< "2009/02/14 12:31 AM"
+
 Usable sequences are:
 // %% - Literal %
 // %d - Day of Month
