@@ -1,0 +1,42 @@
+#pba-notification-container {
+	position: fixed; bottom: 0; right: 0;
+	width: 22em;
+	margin-bottom: 1em; padding: 1em;
+	display: flex; flex-direction: column;
+	overflow: hidden;
+	z-index: 99999;
+	transition: all .5s;
+	font-size: 18px;
+}
+#pba-notification-container .pba-notification {
+	position: relative;
+	width: 20em;
+	margin-top: .25em; padding: 1em 2em 1em 2em;
+	background-color: #aaa;
+	border: solid 1px #686868; border-radius: 20px;
+	font-size: inherit; font-weight: bold;
+	overflow: hidden;
+	transition: opacity .5s, right .5s, font-size .5s, padding .5s, margin .5s;
+	cursor: pointer;
+	opacity: 1;
+	right: 0;
+}
+#pba-notification-container .pba-notification:not(.shown) {
+	opacity: 0;
+	font-size: 0;
+	right: -120%;
+}
+#pba-notification-container .pba-notification.t-info {
+	background-image: linear-gradient(to right, #47f, #47f0 50%);
+}
+#pba-notification-container .pba-notification.t-error {
+	background-image: linear-gradient(to right, #f40, #f400 50%);
+}
+#pba-notification-container .pba-notification.t-warning {
+	background-image: linear-gradient(to right, #fa4, #fa40 50%);
+}
+#pba-notification-container .pba-notification::after {
+	position: absolute; right: .75em; top: 1em;
+	font-family: bootstrap-icons !important;
+	content: '\F285';
+}

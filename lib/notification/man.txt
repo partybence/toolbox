@@ -1,0 +1,6 @@
+Can be used to display simple popup notifications.
+
+Usage:
+	> showNotification(message:String, type:String, permanent:Boolean)
+		where type can be (info|warning|error), which changes the accent color of the popup.
+		permanent indicates whether the notification disappears automatically or only on click.
