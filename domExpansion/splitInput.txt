@@ -1,0 +1,17 @@
+Can be used to display separate input boxes for numeric inputs' digits (like OTPs).
+
+Usage:
+	Simply wrap the input fields in a container that has the data-input-name=<name> tag present
+		where <name> indicates the name tag of the hidden input that can be accessed as part of the FormData.
+
+Example:
+	<form [...]>
+		<div data-input-name="pin">
+			<input type="text" />
+			<input type="text" />
+			<input type="text" />
+			<input type="text" />
+		</div>
+	</form>
+	<!-- An <input type="hidden" name="pin" /> will be automatically appended and will have the value of the four text
+		inputs' concatenated values. -->
