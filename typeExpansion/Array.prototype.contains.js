@@ -1,4 +1,4 @@
-function ArrayContains(a, b, strict=true) {
+function arrayContains(a, b, strict=true) {
 	function isIterable(object){
 		return object != null && typeof object[Symbol.iterator] === 'function';
 	}
@@ -18,7 +18,7 @@ function ArrayContains(a, b, strict=true) {
 	return false;
 }
 {
-	const A = ArrayContains;
+	const A = arrayContains;
 	Int8Array.prototype.contains = function(array, strict) { return A(this, array, strict) };
 	Uint8Array.prototype.contains = function(array, strict) { return A(this, array, strict) };
 	Uint8ClampedArray.prototype.contains = function(array, strict) { return A(this, array, strict) };
