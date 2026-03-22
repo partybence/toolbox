@@ -1,4 +1,4 @@
-function DateFromFormat(string, format) {
+function parseDateFromFormat(dateString, format) {
 	const dt = new Date(0);
 	const s = {
 		'%': ['%'],
@@ -46,4 +46,4 @@ function DateFromFormat(string, format) {
 	return dt;
 }
 
-Date.fromFormat = DateFromFormat;
+Date.parseFromFormat = parseDateFromFormat;
