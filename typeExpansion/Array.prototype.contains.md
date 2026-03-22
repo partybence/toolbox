@@ -25,7 +25,7 @@ The `Array` the elements of which are to be tested on `arrayA`.
 (Optional)
 
 Defines whether the elements should match not only by value, but also by type.  
-This is true by default.
+This is `true` by default.
 
 ## Returns
 
