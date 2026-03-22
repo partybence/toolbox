@@ -1,4 +1,4 @@
-function FormatDate(timestamp, format) {
+function formatDate(timestamp, format) {
 	timestamp = new Date(timestamp);
 	
 	const H = timestamp.getHours();
@@ -45,4 +45,4 @@ function FormatDate(timestamp, format) {
 	return formatted;
 }
 
-Date.prototype.format = function (format) { return FormatDate(this, format) };
+Date.prototype.format = function (format) { return formatDate(this, format) };
