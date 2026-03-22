@@ -25,7 +25,7 @@ eg.: `3h -40m 30s` equals `+3h -40m +30s` which equals `2h 20m 30s`
 
 
 ## Functions:
-### .Days() .Hours() .Minutes() .Seconds() .Millis()  
+### .days() .hours() .minutes() .seconds() .millis()  
 These functions return the components of the TimeDelta indicated by the name.  
 
 **Examples:**  
@@ -42,7 +42,7 @@ These functions return the components of the TimeDelta indicated by the name.
 < 0
 ```
 
-### .TotalDays() .TotalHours() .TotalMinutes() .TotalSeconds() .TotalMillis()  
+### .totalDays() .totalHours() .totalMinutes() .totalSeconds() .totalMillis()  
 These functions return exactly how many of a unit are in the TimeDelta.
 
 **Examples:**  
@@ -51,15 +51,15 @@ These functions return exactly how many of a unit are in the TimeDelta.
 < 26.5
 ```
 	
-### .Format(format:String)
+### .format(format:String)
 This function can be used to stringify the TimeDelta in a desired format.  
 The following sequences can be used in the format:
  - %%  
    for literal "%"
  - %d %h %m %s %.  
-   for accessing .Days() .Hours() .Minutes() .Seconds() and .Millis() in order
+   for accessing .dDays() .hours() .minutes() .seconds() and .millis() in order
  - %D %H %M %S %:  
-   for accessing .TotalDays() .TotalHours() .TotalMinutes() .TotalSeconds() and .TotalMillis() in order
+   for accessing .totalDays() .totalHours() .totalMinutes() .totalSeconds() and .totalMillis() in order
  - values of above sets preceded by 0  
    for rounding the values down and padding with 0 to a length of 3 for millis and a length of 2 for any other.
 
