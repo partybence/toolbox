@@ -23,7 +23,7 @@ when users drag over the page.
 		});
 	</script>
 	<style>
-		[data-drag-state=dragover] [dropzone] {
+		[data-drag-state=dragover]:not([dropzone]) [dropzone] {
 			background-color: lightblue;
 		}
 		[dropzone][data-drag-state=dragover] {
