@@ -34,7 +34,7 @@ function parseDateFromFormat(dateString, format) {
 	});
 	
 	const regex = new RegExp('^'+format+'$');
-	if (m = regex.exec(string)) {
+	if (m = regex.exec(dateString)) {
 		m.shift();
 		sequence.forEach((f) => {
 			f(m.shift());
