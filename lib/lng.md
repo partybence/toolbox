@@ -59,17 +59,20 @@ Assume we've initiaded our singleton using above dictionary.
 
 ### .translate(dom:HTMLElement, dataset='lng':String)  
 This function translates an entire HTML DOM element and it's children.  
-The translation rules for any element is defined in it's dataset attribute, which conform the dataset parameter present in the function call.  
+The translation rules for any element is defined in it's dataset attribute, which conform the dataset attribute present in the function call.  
 The translation rules follow the pattern:  
-`<attribute>:<key>[|<modifier>][;<parameter>:<key>[|<modifier>]...]`  
-where _attribute_ is the name of the HTML attribute to take the value of the translation, supplemented with text and html for the inner contents of the element,
-_key_ is the dictionary key string,
-_modifier_ is the optional modifier of the translated text, currently applicable are 'u' or 'upper' and 'l' or 'lower'.
+`<attribute>[?]:<key>[|<modifier>][;<attribute>[?]:<key>[|<modifier>]...]`  
+where
+- _attribute_ is the name of the HTML attribute to take the value of the translation, supplemented with _text_ and _html_ specials for the inner contents of the element,
+  - if the _attribute_ name is followed by a question mark, the key will be checked for existence and the translation parsed to boolean is checked if _true_.
+    If either one isn't fulfilled, that attribute of the dataset will be skipped entirely.
+- _key_ is the dictionary key string,
+- _modifier_ is the optional modifier of the translated text, currently applicable are 'u' or 'upper' and 'l' or 'lower'.
 
 **Examples:**  
 ```
 <script>
-	lng.init({'name':'Name of user', 'age':'Age of user', 'tel':'Phone number'});
+	lng.init({'name':'Name of user', 'age':'Age of user', 'tel':'Phone number', 'nonexistent':'Examples for missing key'});
 	const userdata = new lng({'name':'John Doe', 'age':'55', 'tel':'123456'});
 </script>
 
@@ -90,6 +93,14 @@ _modifier_ is the optional modifier of the translated text, currently applicable
 		<td data-lng="text:tel"></td>
 		<td data-userdata="text:tel"></td>
 	</tr>
+	<tr>
+		<td data-lng="text:nonexistent"></td>
+		<td data-userdata="text:nonexistent"></td>
+	</tr>
+	<tr>
+		<td data-lng="text:nonexistent"></td>
+		<td data-userdata="text?:nonexistent"></td>
+	</tr>
 </table>
 
 <script>
@@ -105,3 +116,5 @@ Singleton translated | Local instance translated
 Name of user | John Doe
 Age of user | 55
 Phone number | 123456
+Examples for missing key | {{nonexistent}}
+Examples for missing key | 
