@@ -61,12 +61,18 @@ Assume we've initiaded our singleton using above dictionary.
 This function translates an entire HTML DOM element and it's children.  
 The translation rules for any element is defined in it's dataset attribute, which conform the dataset attribute present in the function call.  
 The translation rules follow the pattern:  
-`<attribute>[?]:<key>[|<modifier>][;<attribute>[?]:<key>[|<modifier>]...]`  
+`<attribute>[?+&]:<key>[|<modifier>][;<attribute>[?]:<key>[|<modifier>]...]`  
 where
-- _attribute_ is the name of the HTML attribute to take the value of the translation, supplemented with _text_ and _html_ specials for the inner contents of the element,
-  - if the _attribute_ name is followed by a question mark, the key will be checked for existence and the translation parsed to boolean is checked if _true_.
-    If either one isn't fulfilled, that attribute of the dataset will be skipped entirely.
+- _attribute_ is the name of the HTML attribute to take the value of the translation, with the following special arguments:
+  - _text_: sets the `.textContent` of the element
+  - _html_: sets the `.innerHTML` of the element
+  - _value_: if used on `input`, `textarea` or `select`, sets the `.value` of the element.
+  - The attribute name can be followed by one of the following characters:
+    - _?_: only apply the translation if the value is not falsy
+	- _+_: append the value to the current value of the attribute
+	- _&_: append the value only if not falsy
 - _key_ is the dictionary key string,
+  - A prefix and suffix can be added before and after the key in the form of a string enclosed in backticks: **\`prefix\`key\`suffix\`**
 - _modifier_ is the optional modifier of the translated text, currently applicable are 'u' or 'upper' and 'l' or 'lower'.
 
 **Examples:**  
