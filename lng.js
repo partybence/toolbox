@@ -31,7 +31,7 @@ class lng {
 	
 	#translateOne(elm, dataset) {
 		elm.dataset[dataset].split(';').forEach(param=>{
-			const m = param.match(/^([\w.-]+)([?+&]?):(?:`([^`]*)`)?([^|`]+)(?:\|([\w]+))?(?:`([^`]*)`)?$/);
+			const m = param.match(/^([\w\d.-]+)([?+&]?):(?:`([^`]*)`)?([^|`]+)(?:\|([\w]+))?(?:`([^`]*)`)?$/);
 			if (m == null) return;
 			const [_, arg, mode, prefix, key, modifier, suffix] = m;
 			const truth = ['?', '&'].includes(mode);
