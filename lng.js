@@ -1,32 +1,14 @@
 class lng {
-	static #instance;
 	#dict = {};
 	
 	constructor(dictionary) {
 		this.#dict = (typeof dictionary == 'string') ? JSON.parse(dictionary) : dictionary;
 	}
 	
-	static init(dictionary) {
-		this.#instance = new this(dictionary);
-	}
-	
-	static t(key) {
-		return this.#instance?.t(key);
-	}
-	
-	static translate(dom, dataset="lng") {
-		return this.#instance?.translate(dom, dataset);
-	}
-	
 	#findKey(key) {
 		let subkey = this.#dict;
 		key.split('.').forEach(k=>{ subkey = subkey[k]; });
 		return (!['string', 'boolean', 'number'].includes(typeof subkey)) ? null : subkey;
-	}
-	
-	t(key) {
-		if (typeof key != 'string') return;
-		return this.#findKey(key) ?? '{{'+key+'}}';
 	}
 	
 	#translateOne(elm, dataset) {
@@ -78,11 +60,29 @@ class lng {
 		delete elm.dataset[dataset];
 	}
 	
+	t(key) {
+		if (typeof key != 'string') throw new Error('Provided key is not string.');
+		return this.#findKey(key) ?? '{{'+key+'}}';
+	}
+	
 	translate(dom, dataset="template") {
-		if (! dom instanceof HTMLElement) return;
+		if (!(dom instanceof HTMLElement)) throw new Error('This function can only be used on HTMLElements.');
 		if (dom.dataset[dataset]) this.#translateOne(dom, dataset);
 		dom.querySelectorAll('[data-'+dataset+']').forEach(elm=>{
 			this.#translateOne(elm, dataset);
 		});
+	}
+	
+	static #instance;
+	
+	static init(dictionary) { this.#instance = new this(dictionary); }
+	
+	static t(key) {
+		if (! this.#instance) throw Error("lng not initialized.");
+		return this.#instance.t(key);
+	}
+	static translate(dom, dataset="lng") {
+		if (! this.#instance) throw Error("lng not initialized.");
+		this.#instance.translate(dom, dataset);
 	}
 }
