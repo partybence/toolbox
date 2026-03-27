@@ -13,9 +13,10 @@ class lng {
 	
 	#translateOne(elm, dataset) {
 		elm.dataset[dataset].split(';').forEach(param=>{
-			const m = param.match(/^([\w\d.-]+)([?+&]?):(?:`([^`]*)`)?([^|`]+)(?:\|([\w]+))?(?:`([^`]*)`)?$/);
+			const m = param.match(/^([a-zA-Z](?:[\w\d.-]*[a-zA-Z0-9])?)([?+&]?):(?:`((?:[^`\\]|\\[`\\])*)`)?([a-zA-Z](?:[\w\d.-]*[a-zA-Z0-9])?)(?:\|([a-zA-Z]+))?(?:`((?:[^`\\]|\\[`\\])*)`)?$/);
 			if (m == null) return;
-			const [_, arg, mode, prefix, key, modifier, suffix] = m;
+			const [_, arg, mode, prefixEsc, key, modifier, suffixEsc] = m;
+			const [prefix, suffix] = [prefixEsc, suffixEsc].map(i => i?.replaceAll(/\\([\\`])/g, '$1'));
 			const truth = ['?', '&'].includes(mode);
 			const append = ['+', '&'].includes(mode);
 			let value = this.#findKey(key);
