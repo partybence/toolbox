@@ -3,9 +3,7 @@
 ## Description
 Allows lightweight dictionary management for dynamic localization and value templating.
 
-## Initializing/Instantiating:
-
-### Usage
+## Initializing/Instantiating
 
 **Global (static)**
 
