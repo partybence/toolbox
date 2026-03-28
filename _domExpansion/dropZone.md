@@ -8,10 +8,12 @@ Helps creating simple, even-driven drop-zones on your webpage if the only goal i
 
 To create a drop-zone, simply add the `dropzone` attribute to the desired `HTMLElement`.
 
-### Processing dropped contents
+### Events
 
-When a drop lands, the drop-zone fires a `drop` event, to which you can attach a listener.  
-The dropped content will be present in the event's `detail` parameter.
+**drop**
+
+When a drop lands, the drop-zone fires this event.  
+The dropped content is present in the event's `detail` parameter.
 
 ### Styling
 
@@ -20,6 +22,7 @@ You can add the `data-drag-state` attribute to `HTMLElement`s, which, when dragg
 This can be used for CSS styling. The `data-drag-state` can be added to parents of the dropzone, and highlight the designated area as soon as the user drags over a parent of that.
 
 ## Examples
+
 ```html
 <body data-drag-state>
 	<div id="myDropZone" dropzone data-drag-state>Drop Content Here</div>
