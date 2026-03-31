@@ -1,6 +1,5 @@
 # lng (Lowercase LNG)
 
-## Description
 Allows lightweight dictionary management for dynamic localization and value templating.
 
 ## Initializing/Instantiating
