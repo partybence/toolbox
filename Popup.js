@@ -101,16 +101,14 @@ class Popup {
 		if (typeof ModalManager !== 'undefined') ModalManager.register(this.#modal);
 	}
 	
-	reset() {
-		this.#modal = this.#prototype.cloneNode(true);
-	}
+	reset() { this.#modal = this.#prototype.cloneNode(true); }
 	
 	show() {
 		if (this.#resolve !== null) return;
 		return new Promise(resolve => {
 			const defop = {backdrop: 'static', keyboard: false};
 			this.#resolve = resolve;
-			bootstrap.Modal.getOrCreateInstance(this.#modal, this.#options ?? defop).show();
+			(new bootstrap.Modal(this.#modal, this.#options ?? defop)).show();
 		});
 	}
 	
