@@ -23,6 +23,7 @@ class ModalManager {
 		this.#modals.push(modal);
 	}
 	#hiddenEv = e => {
+		this.#modals = this.#modals.filter(i => i._element !== null);
 		const i = this.#modals.indexOf(bootstrap.Modal.getInstance(e.target));
 		if (i > -1) this.#modals.splice(i,1);
 	}
