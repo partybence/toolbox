@@ -18,9 +18,12 @@ For creating a generic popup, an `object` is to be supplied having the following
   - `PopupType.Confirm` or `1` to create a user confirm dialog, having Ok or Cancel options
   - `PopupType.Input` or `2` to create a simple text input popup
   - `PopupType.Masked` or `3` to create a masked text input (password input) popup
-- _title_ and _prompt_ (Optional) of which at least one must be present, either setting the modal title, the modal text, or both
+- _title_ and _prompt_ `String` (Optional) of which at least one must be present, either setting the modal title, the modal text, or both
 - _center_ `true`/`false` (Optional, default: `false`) indicating whether the popup should be vertically centered (`.modal-dialog-centered`)
 - _wide_ `true`/`false` (Optional, default: `false`) indicating whether the popup should be normal sized (on `true`) or smaller, more popup-like (on `false`) (`.modal-sm`)
+- _danger_ `true`/`false` (Optional, default: `false`) setting the confirm button to use `btn-danger` to indicate the confirmation of a dangerous action.
+- _ok_ `String` (Optional, default: `Ok`) sets the confirm button's text.
+- _cancel_ `String` (Optional, default: `Cancel`) sets the cancel button's text.
 
 Or you can create custom popup modals (read below) in which case the modal as an `HTMLElement` or selector as `String` should be passed.
 
@@ -85,7 +88,7 @@ console.log('User acknowledged that this is OpenSource...');
 
 ```js
 // Create a simple confirmation popup, place it in the center
-const p = new Popup({type: PopupType.Confirm, title: 'Wait', prompt: 'Are you sure that you want to continue?', center: true});
+const p = new Popup({type: PopupType.Confirm, title: 'Wait', prompt: 'Are you sure that you want to continue?', center: true, danger: true, ok: 'Yes, go on'});
 const response = await p.show();
 if (response.self == true) {
 	console.log('User confirmed to go on...');
@@ -96,7 +99,7 @@ if (response.self == true) {
 
 ```js
 // Use wider popup for text input, this time we only want a header
-const p = new Popup({type: PopupType.Input, title: 'Name please', wide: true});
+const p = new Popup({type: PopupType.Input, title: 'Name please', wide: true, cancel: 'Not today'});
 const response = await p.show();
 if (response.self == true) {
 	const name = response.input.value;

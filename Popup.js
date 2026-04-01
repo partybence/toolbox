@@ -7,7 +7,7 @@ const PopupType = Object.freeze({
 
 class Popup {
 	static #buildGeneric = (options) => {
-		const {type, title, prompt, center, wide} = options;
+		const {type, title, prompt, center, wide, danger, ok, cancel} = options;
 		const n = (n) => document.createElement(n);
 		const modal = n('div'); const modald = n('div'); const modalc = n('div'); const modalh = n('div'); const modalb = n('div'); const modalf = n('div');
 		modal.classList.add('modal'); modal.tabindex = '-1';
@@ -23,9 +23,9 @@ class Popup {
 		if (modalb.innerHTML == '') { modalb.remove(); modalh.classList.add('border-0'); }
 		modalf.classList.add('modal-footer'); modalc.appendChild(modalf);
 		if (type != 0) {
-			const bc = n('button'); bc.type='button'; bc.classList.add('btn', 'btn-secondary'); bc.dataset.bsDismiss = 'modal'; bc.textContent = 'Cancel'; modalf.appendChild(bc);
+			const bc = n('button'); bc.type='button'; bc.classList.add('btn', 'btn-secondary'); bc.dataset.bsDismiss = 'modal'; bc.textContent = cancel ?? 'Cancel'; modalf.appendChild(bc);
 		}
-		const bs = n('button'); bs.type='button'; bs.classList.add('btn', 'btn-primary'); bs.dataset.popupResolve = ''; bs.textContent = 'Ok'; modalf.appendChild(bs);
+		const bs = n('button'); bs.type='button'; bs.classList.add('btn', (danger ? 'btn-danger' : 'btn-primary')); bs.dataset.popupResolve = ''; bs.textContent = ok ?? 'Ok'; modalf.appendChild(bs);
 		return modal;
 	};
 	
