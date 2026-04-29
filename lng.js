@@ -58,7 +58,6 @@ class lng {
 					break;
 			}
 		});
-		delete elm.dataset[dataset];
 	}
 	
 	t(key) {
